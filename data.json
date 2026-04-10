@@ -1,0 +1,237 @@
+{
+  "array-09-2023": {
+    "monthDetails": {},
+    "dayArray": [
+      {
+        "count": "5",
+        "day": "03",
+        "month": "09",
+        "year": "2023",
+        "data": []
+      },
+      {
+        "count": "2",
+        "day": "10",
+        "month": "09",
+        "year": "2023",
+        "data": []
+      },
+      {
+        "count": "2",
+        "day": "13",
+        "month": "09",
+        "year": "2023",
+        "data": []
+      },
+      {
+        "count": "1",
+        "day": "17",
+        "month": "09",
+        "year": "2023",
+        "data": []
+      },
+      {
+        "count": "2",
+        "day": "29",
+        "month": "09",
+        "year": "2023",
+        "data": []
+      }
+    ]
+  },
+  "array-10-2023": {
+    "monthDetails": {},
+    "dayArray": [
+      {
+        "count": "3",
+        "day": "02",
+        "month": "10",
+        "year": "2023",
+        "data": []
+      },
+      {
+        "count": "3",
+        "day": "10",
+        "month": "10",
+        "year": "2023",
+        "data": []
+      },
+      {
+        "count": "1",
+        "day": "13",
+        "month": "10",
+        "year": "2023",
+        "data": []
+      },
+      {
+        "count": "2",
+        "day": "22",
+        "month": "10",
+        "year": "2023",
+        "data": []
+      },
+      {
+        "count": "1",
+        "day": "29",
+        "month": "10",
+        "year": "2023",
+        "data": []
+      },
+      {
+        "count": "1",
+        "day": "30",
+        "month": "10",
+        "year": "2023",
+        "data": []
+      }
+    ]
+  },
+  "array-11-2023": {
+    "monthDetails": {},
+    "dayArray": [
+      {
+        "count": "1",
+        "day": "01",
+        "month": "11",
+        "year": "2023",
+        "data": []
+      },
+      {
+        "count": "1",
+        "day": "03",
+        "month": "11",
+        "year": "2023",
+        "data": []
+      },
+      {
+        "count": "1",
+        "day": "08",
+        "month": "11",
+        "year": "2023",
+        "data": []
+      },
+      {
+        "count": "1",
+        "day": "19",
+        "month": "11",
+        "year": "2023",
+        "data": []
+      },
+      {
+        "count": "1",
+        "day": "22",
+        "month": "11",
+        "year": "2023",
+        "data": []
+      },
+      {
+        "count": "1",
+        "day": "23",
+        "month": "11",
+        "year": "2023",
+        "data": []
+      },
+      {
+        "count": "1",
+        "day": "24",
+        "month": "11",
+        "year": "2023",
+        "data": []
+      }
+    ]
+  },
+  "array-12-2023": {
+    "monthDetails": {},
+    "dayArray": [
+      {
+        "count": "1",
+        "day": "01",
+        "month": "12",
+        "year": "2023",
+        "data": []
+      },
+      {
+        "count": "2",
+        "day": "07",
+        "month": "12",
+        "year": "2023",
+        "data": []
+      },
+      {
+        "count": "2",
+        "day": "16",
+        "month": "12",
+        "year": "2023",
+        "data": []
+      },
+      {
+        "count": "1",
+        "day": "17",
+        "month": "12",
+        "year": "2023",
+        "data": []
+      },
+      {
+        "count": "1",
+        "day": "24",
+        "month": "12",
+        "year": "2023",
+        "data": []
+      },
+      {
+        "count": "1",
+        "day": "25",
+        "month": "12",
+        "year": "2023",
+        "data": []
+      }
+    ]
+  },
+  "array-01-2024": {
+    "monthDetails": {},
+    "dayArray": [
+      {
+        "count": "1",
+        "day": "08",
+        "month": "01",
+        "year": "2024",
+        "data": []
+      },
+      {
+        "count": "1",
+        "day": "12",
+        "month": "01",
+        "year": "2024",
+        "data": []
+      },
+      {
+        "count": "1",
+        "day": "13",
+        "month": "01",
+        "year": "2024",
+        "data": []
+      },
+      {
+        "count": "1",
+        "day": "19",
+        "month": "01",
+        "year": "2024",
+        "data": []
+      },
+      {
+        "count": "2",
+        "day": "20",
+        "month": "01",
+        "year": "2024",
+        "data": []
+      },
+      {
+        "count": "2",
+        "day": "24",
+        "month": "01",
+        "year": "2024",
+        "data": []
+      }
+    ]
+  }
+}
