@@ -1,4 +1,4 @@
-import { log } from "console";
+import { count, log } from "console";
 import fs from "fs";
 
 const services = {
@@ -12,13 +12,59 @@ const services = {
             data: {}
         }
         let yearData = {
-            yearDetails: {},
-            yearlyData: {}
+            yearDetails: {
+                max: {
+                    count: -Infinity,
+                    date: ""
+                },
+                min: {
+                    count: Infinity,
+                    date: ""
+                },
+            },
+            yearlyData: {
+                month: {
+                    count: 0,
+                    month: "",
+                    year: ""
+                }
+            }
         }
+
+        let fullDatawithDetails = {
+            AllDetails: {
+                count: 0,
+                month: "",
+                year: ""
+            },
+            // 2023: {
+            //     yearDetails: {
+            //         max: {
+            //             count: -Infinity,
+            //             date: ""
+            //         },
+            //         min: {
+            //             count: Infinity,
+            //             date: ""
+            //         },
+            //     },
+            //     09-2023: {
+            //         monthDetails: {
+            //             count: 0,
+            //             month: "",
+            //             year: ""
+            //         },
+            //         Daydata: []
+            //     }
+            // },
+        };
         const fullData = this.dataOparation(rowData, filterdAllData, yearData);
         fs.writeFileSync("filterdAllData.json", JSON.stringify(fullData, null, 2));
-        // fs.writeFileSync("TotalData.json", JSON.stringify(filterdAllData, null, 2));
-        // fs.writeFileSync("yearlyData.json", JSON.stringify(yearlyData, null, 2));
+
+        let fullDatawithDetailsData = this.fullDatawithDetails(filterdAllData);
+
+        fs.writeFileSync("fullDatawithDetails.json", JSON.stringify(fullDatawithDetailsData, null, 2));
+        fs.writeFileSync("TotalMonthData.json", JSON.stringify(filterdAllData, null, 2));
         return "File written successfully";
     },
     dataOparation: function (rowData, filterdAllData, yearData) {
@@ -55,55 +101,9 @@ const services = {
             });
         });
         this.totalDataDetails(filterdAllData); // compute totals after all rows are parsed
+        this.totalYearDetails(filterdAllData, yearData); // compute yearly details after all rows are parsed
         return filterdAllData;
     },
-    // totalYearDetails: function (monthData, yearlyData) {
-
-    //     Object.keys(monthData).forEach(monthKey => {
-    //         const monthDetails = monthData[monthKey].monthDetails;
-    //         const [_, month, year] = monthKey.split("-");
-    //     });
-
-    // },
-    // totalDataDetails: function (filterdAllData) {
-    //     // console.log("monthDatamonthData", dayArray);
-    //     console.log("monthDatamonthData", filterdAllData);
-
-        
-    //     let totalCount = 0;
-    //     dayArray.forEach(day => {
-    //         totalCount += parseInt(day.count, 10) || 0;
-    //     });
-
-    //     let date = null;
-    //     if (dayArray.length > 0 && dayArray[0].month && dayArray[0].year) {
-    //         date = `${dayArray[0].month}/${dayArray[0].year}`;
-
-    //         if (!monthlyData.monthlyData[dayArray[0].year]) {
-    //             monthlyData.monthlyData[dayArray[0].year] = [];
-    //         }
-
-    //         monthlyData.monthlyData[dayArray[0].year].push({
-    //             date,
-    //             totalCount
-    //         });
-    //     }
-
-    //     if (!monthlyData.totalDetails.max || monthlyData.totalDetails.max < totalCount) {
-    //         monthlyData.totalDetails.max = totalCount;
-    //         monthlyData.totalDetails.maxDate = date;
-    //     }
-
-    //     if (!monthlyData.totalDetails.min || monthlyData.totalDetails.min > totalCount) {
-    //         monthlyData.totalDetails.min = totalCount;
-    //         monthlyData.totalDetails.minDate = date;
-    //     }
-
-    //     return {
-    //         totalCount,
-    //         date
-    //     };
-    // },
     totalDataDetails: function (filterdAllData) {
         let overallTotal = 0;
         let yearMax = -Infinity;
@@ -174,31 +174,133 @@ const services = {
     totalYearDetails: function (filterdAllData, yearData) {
         Object.keys(filterdAllData.data).forEach(yearKey => {
             const yearDetails = filterdAllData.data[yearKey];
-            let totalYearCount = 0;
+            let yearTotalCount = 0;
+
             Object.keys(yearDetails).forEach(monthKey => {
                 const monthDataArray = yearDetails[monthKey];
-                monthDataArray.forEach(dayData => {
-                    totalYearCount += parseInt(dayData.count, 10) || 0;
-                });
+                const monthTotalCount = monthDataArray.reduce((sum, dayData) => {
+                    return sum + (parseInt(dayData.count, 10) || 0);
+                }, 0);
+
+                yearTotalCount += monthTotalCount;
+
+                const [, month, year] = monthKey.split("-");
+                const monthLabel = `${month}/${year}`;
+
+                //all months one by one data in yearlyData
+                //month details in per month
+                if (!yearData.yearlyData.month[yearKey]) {
+                    yearData.yearlyData.month[yearKey] = {
+                        count: monthTotalCount,
+                        month: monthLabel,
+                        year: yearKey
+                    };
+                } else {
+                    yearData.yearlyData.month[yearKey].count += monthTotalCount;
+                }
+
             });
 
-            if (!yearData.yearlyData[yearKey]) {
-                yearData.yearlyData[yearKey] = {};
+            if (yearTotalCount > yearData.yearDetails.max.count) {
+                yearData.yearDetails.max.count = yearTotalCount;
+                yearData.yearDetails.max.date = yearKey;
             }
-            yearData.yearlyData[yearKey].totalCount = totalYearCount;
-
-            if (!yearData.yearDetails.max || yearData.yearDetails.max < totalYearCount) {
-                yearData.yearDetails.max = totalYearCount;
-                yearData.yearDetails.maxYear = yearKey;
-            }
-
-            if (!yearData.yearDetails.min || yearData.yearDetails.min > totalYearCount) {
-                yearData.yearDetails.min = totalYearCount;
-                yearData.yearDetails.minYear = yearKey;
+            if (yearTotalCount < yearData.yearDetails.min.count) {
+                yearData.yearDetails.min.count = yearTotalCount;
+                yearData.yearDetails.min.date = yearKey;
             }
         });
+    },
+    fullDatawithDetails: function (filterdAllData) {
+        let fullDatawithDetails = {
+            AllDetails: {
+                count: 0,
+                month: "",
+                year: ""
+            },
+        };
 
-        return yearData;
+        Object.keys(filterdAllData.data).forEach(yearKey => {
+            const yearDetails = filterdAllData.data[yearKey];
+            let yearTotalCount = 0;
+
+            Object.keys(yearDetails).forEach(monthKey => {
+                const monthDataArray = yearDetails[monthKey];
+                const monthTotalCount = monthDataArray.reduce((sum, dayData) => {
+                    return sum + (parseInt(dayData.count, 10) || 0);
+                }, 0);
+
+                yearTotalCount += monthTotalCount;
+
+                const [, month, year] = monthKey.split("-");
+                const monthLabel = `${month}/${year}`;
+
+                if (!fullDatawithDetails[yearKey]) {
+                    fullDatawithDetails[yearKey] = {
+                        yearDetails: {
+                            max: {
+                                count: -Infinity,
+                                date: ""
+                            },
+                            min: {
+                                count: Infinity,
+                                date: ""
+                            },
+                        },
+                        [monthKey]: {
+                            monthDetails: {
+                                count: monthTotalCount,
+                                month: monthLabel,
+                                year: yearKey,
+                                totalDayCount: monthDataArray.length
+                            },
+                            Daydata: monthDataArray
+                        }
+                    };
+                } else {
+                    fullDatawithDetails[yearKey][monthKey] = {
+                        monthDetails: {
+                            count: monthTotalCount,
+                            month: monthLabel,
+                            year: yearKey,
+                            totalDayCount: monthDataArray.length
+                        },
+                        Daydata: monthDataArray
+                    };
+                }
+            });
+
+            if (yearTotalCount > fullDatawithDetails[yearKey].yearDetails.max.count) {
+                fullDatawithDetails[yearKey].yearDetails.max.count = yearTotalCount;
+                fullDatawithDetails[yearKey].yearDetails.max.date = yearKey;
+            }
+            if (yearTotalCount < fullDatawithDetails[yearKey].yearDetails.min.count) {
+                fullDatawithDetails[yearKey].yearDetails.min.count = yearTotalCount;
+                fullDatawithDetails[yearKey].yearDetails.min.date = yearKey;
+            }
+
+            fullDatawithDetails.AllDetails = filterdAllData.totalDetails;
+        });
+
+        return fullDatawithDetails;
+    },
+    filteterdMonthData: function (fullData) {
+        let monthData = {};
+        Object.keys(fullData.data).forEach(yearKey => {
+            const yearDetails = fullData.data[yearKey];
+            Object.keys(yearDetails).forEach(monthKey => {
+                const monthDataArray = yearDetails[monthKey];
+                const monthTotalCount = monthDataArray.reduce((sum, dayData) => {
+                    return sum + (parseInt(dayData.count, 10) || 0);
+                }, 0);
+
+                const [, month, year] = monthKey.split("-");
+                const monthLabel = `${month}/${year}`;
+
+                monthData[monthLabel] = monthTotalCount;
+            });
+        });
+        fs.writeFileSync("monthData.json", JSON.stringify(monthData, null, 2));
     }
 }
 export default services

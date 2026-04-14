@@ -1,0 +1,43 @@
+{
+  "yearDetails": {
+    "max": {
+      "count": 96,
+      "date": "2024"
+    },
+    "min": {
+      "count": 38,
+      "date": "2023"
+    }
+  },
+  "yearlyData": {
+    "month": {
+      "2023": {
+        "count": 38,
+        "month": "09/2023",
+        "year": "2023",
+        "total": 5
+      },
+      "2024": {
+        "count": 96,
+        "month": "01/2024",
+        "year": "2024",
+        "total": 6
+      },
+      "2025": {
+        "count": 92,
+        "month": "01/2025",
+        "year": "2025",
+        "total": 6
+      },
+      "2026": {
+        "count": 42,
+        "month": "01/2026",
+        "year": "2026",
+        "total": 5
+      },
+      "count": 0,
+      "month": "",
+      "year": ""
+    }
+  }
+}

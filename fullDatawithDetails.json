@@ -1,0 +1,1551 @@
+{
+  "2023": {
+    "yearDetails": {
+      "max": {
+        "count": 38,
+        "date": "2023"
+      },
+      "min": {
+        "count": 38,
+        "date": "2023"
+      }
+    },
+    "array-09-2023": {
+      "monthDetails": {
+        "count": 12,
+        "month": "09/2023",
+        "year": "2023",
+        "totalDayCount": 5
+      },
+      "Daydata": [
+        {
+          "count": "5",
+          "day": "03",
+          "month": "09",
+          "year": "2023",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "10",
+          "month": "09",
+          "year": "2023",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "13",
+          "month": "09",
+          "year": "2023",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "17",
+          "month": "09",
+          "year": "2023",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "29",
+          "month": "09",
+          "year": "2023",
+          "data": []
+        }
+      ]
+    },
+    "array-10-2023": {
+      "monthDetails": {
+        "count": 11,
+        "month": "10/2023",
+        "year": "2023",
+        "totalDayCount": 6
+      },
+      "Daydata": [
+        {
+          "count": "3",
+          "day": "02",
+          "month": "10",
+          "year": "2023",
+          "data": []
+        },
+        {
+          "count": "3",
+          "day": "10",
+          "month": "10",
+          "year": "2023",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "13",
+          "month": "10",
+          "year": "2023",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "22",
+          "month": "10",
+          "year": "2023",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "29",
+          "month": "10",
+          "year": "2023",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "30",
+          "month": "10",
+          "year": "2023",
+          "data": []
+        }
+      ]
+    },
+    "array-11-2023": {
+      "monthDetails": {
+        "count": 7,
+        "month": "11/2023",
+        "year": "2023",
+        "totalDayCount": 7
+      },
+      "Daydata": [
+        {
+          "count": "1",
+          "day": "01",
+          "month": "11",
+          "year": "2023",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "03",
+          "month": "11",
+          "year": "2023",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "08",
+          "month": "11",
+          "year": "2023",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "19",
+          "month": "11",
+          "year": "2023",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "22",
+          "month": "11",
+          "year": "2023",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "23",
+          "month": "11",
+          "year": "2023",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "24",
+          "month": "11",
+          "year": "2023",
+          "data": []
+        }
+      ]
+    },
+    "array-12-2023": {
+      "monthDetails": {
+        "count": 8,
+        "month": "12/2023",
+        "year": "2023",
+        "totalDayCount": 6
+      },
+      "Daydata": [
+        {
+          "count": "1",
+          "day": "01",
+          "month": "12",
+          "year": "2023",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "07",
+          "month": "12",
+          "year": "2023",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "16",
+          "month": "12",
+          "year": "2023",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "17",
+          "month": "12",
+          "year": "2023",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "24",
+          "month": "12",
+          "year": "2023",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "25",
+          "month": "12",
+          "year": "2023",
+          "data": []
+        }
+      ]
+    }
+  },
+  "2024": {
+    "yearDetails": {
+      "max": {
+        "count": 96,
+        "date": "2024"
+      },
+      "min": {
+        "count": 96,
+        "date": "2024"
+      }
+    },
+    "array-01-2024": {
+      "monthDetails": {
+        "count": 8,
+        "month": "01/2024",
+        "year": "2024",
+        "totalDayCount": 6
+      },
+      "Daydata": [
+        {
+          "count": "1",
+          "day": "08",
+          "month": "01",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "12",
+          "month": "01",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "13",
+          "month": "01",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "19",
+          "month": "01",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "20",
+          "month": "01",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "24",
+          "month": "01",
+          "year": "2024",
+          "data": []
+        }
+      ]
+    },
+    "array-02-2024": {
+      "monthDetails": {
+        "count": 5,
+        "month": "02/2024",
+        "year": "2024",
+        "totalDayCount": 2
+      },
+      "Daydata": [
+        {
+          "count": "3",
+          "day": "09",
+          "month": "02",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "13",
+          "month": "02",
+          "year": "2024",
+          "data": []
+        }
+      ]
+    },
+    "array-03-2024": {
+      "monthDetails": {
+        "count": 8,
+        "month": "03/2024",
+        "year": "2024",
+        "totalDayCount": 5
+      },
+      "Daydata": [
+        {
+          "count": "1",
+          "day": "05",
+          "month": "03",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "o9",
+          "month": "03",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "13",
+          "month": "03",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "22",
+          "month": "03",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "3",
+          "day": "24",
+          "month": "03",
+          "year": "2024",
+          "data": []
+        }
+      ]
+    },
+    "array-04-2024": {
+      "monthDetails": {
+        "count": 15,
+        "month": "04/2024",
+        "year": "2024",
+        "totalDayCount": 9
+      },
+      "Daydata": [
+        {
+          "count": "3",
+          "day": "02",
+          "month": "04",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "11",
+          "month": "04",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "13",
+          "month": "04",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "14",
+          "month": "04",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "16",
+          "month": "04",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "18",
+          "month": "04",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "20",
+          "month": "04",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "26",
+          "month": "04",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "30",
+          "month": "04",
+          "year": "2024",
+          "data": []
+        }
+      ]
+    },
+    "array-05-2024": {
+      "monthDetails": {
+        "count": 5,
+        "month": "05/2024",
+        "year": "2024",
+        "totalDayCount": 4
+      },
+      "Daydata": [
+        {
+          "count": "1",
+          "day": "01",
+          "month": "05",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "15",
+          "month": "05",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "19",
+          "month": "05",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "30",
+          "month": "05",
+          "year": "2024",
+          "data": []
+        }
+      ]
+    },
+    "array-06-2024": {
+      "monthDetails": {
+        "count": 6,
+        "month": "06/2024",
+        "year": "2024",
+        "totalDayCount": 4
+      },
+      "Daydata": [
+        {
+          "count": "2",
+          "day": "04",
+          "month": "06",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "08",
+          "month": "06",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "15",
+          "month": "06",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "25",
+          "month": "06",
+          "year": "2024",
+          "data": []
+        }
+      ]
+    },
+    "array-07-2024": {
+      "monthDetails": {
+        "count": 6,
+        "month": "07/2024",
+        "year": "2024",
+        "totalDayCount": 4
+      },
+      "Daydata": [
+        {
+          "count": "1",
+          "day": "01",
+          "month": "07",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "13",
+          "month": "07",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "21",
+          "month": "07",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "25",
+          "month": "07",
+          "year": "2024",
+          "data": []
+        }
+      ]
+    },
+    "array-08-2024": {
+      "monthDetails": {
+        "count": 7,
+        "month": "08/2024",
+        "year": "2024",
+        "totalDayCount": 4
+      },
+      "Daydata": [
+        {
+          "count": "2",
+          "day": "07",
+          "month": "08",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "10",
+          "month": "08",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "27",
+          "month": "08",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "29",
+          "month": "08",
+          "year": "2024",
+          "data": []
+        }
+      ]
+    },
+    "array-09-2024": {
+      "monthDetails": {
+        "count": 7,
+        "month": "09/2024",
+        "year": "2024",
+        "totalDayCount": 3
+      },
+      "Daydata": [
+        {
+          "count": "3",
+          "day": "01",
+          "month": "09",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "17",
+          "month": "09",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "27",
+          "month": "09",
+          "year": "2024",
+          "data": []
+        }
+      ]
+    },
+    "array-10-2024": {
+      "monthDetails": {
+        "count": 10,
+        "month": "10/2024",
+        "year": "2024",
+        "totalDayCount": 4
+      },
+      "Daydata": [
+        {
+          "count": "3",
+          "day": "04",
+          "month": "10",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "24",
+          "month": "10",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "3",
+          "day": "25",
+          "month": "10",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "3",
+          "day": "31",
+          "month": "10",
+          "year": "2024",
+          "data": []
+        }
+      ]
+    },
+    "array-11-2024": {
+      "monthDetails": {
+        "count": 10,
+        "month": "11/2024",
+        "year": "2024",
+        "totalDayCount": 4
+      },
+      "Daydata": [
+        {
+          "count": "3",
+          "day": "05",
+          "month": "11",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "10",
+          "month": "11",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "14",
+          "month": "11",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "4",
+          "day": "17",
+          "month": "11",
+          "year": "2024",
+          "data": []
+        }
+      ]
+    },
+    "array-12-2024": {
+      "monthDetails": {
+        "count": 9,
+        "month": "12/2024",
+        "year": "2024",
+        "totalDayCount": 5
+      },
+      "Daydata": [
+        {
+          "count": "1",
+          "day": "01",
+          "month": "12",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "03",
+          "month": "12",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "05",
+          "month": "12",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "4",
+          "day": "26",
+          "month": "12",
+          "year": "2024",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "30",
+          "month": "12",
+          "year": "2024",
+          "data": []
+        }
+      ]
+    }
+  },
+  "2025": {
+    "yearDetails": {
+      "max": {
+        "count": 92,
+        "date": "2025"
+      },
+      "min": {
+        "count": 92,
+        "date": "2025"
+      }
+    },
+    "array-01-2025": {
+      "monthDetails": {
+        "count": 7,
+        "month": "01/2025",
+        "year": "2025",
+        "totalDayCount": 6
+      },
+      "Daydata": [
+        {
+          "count": "1",
+          "day": "04",
+          "month": "01",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "13",
+          "month": "01",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "15",
+          "month": "01",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "18",
+          "month": "01",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "19",
+          "month": "01",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "23",
+          "month": "01",
+          "year": "2025",
+          "data": []
+        }
+      ]
+    },
+    "array-02-2025": {
+      "monthDetails": {
+        "count": 8,
+        "month": "02/2025",
+        "year": "2025",
+        "totalDayCount": 5
+      },
+      "Daydata": [
+        {
+          "count": "2",
+          "day": "07",
+          "month": "02",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "11",
+          "month": "02",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "12",
+          "month": "02",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "16",
+          "month": "02",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "20",
+          "month": "02",
+          "year": "2025",
+          "data": []
+        }
+      ]
+    },
+    "array-03-2025": {
+      "monthDetails": {
+        "count": 9,
+        "month": "03/2025",
+        "year": "2025",
+        "totalDayCount": 5
+      },
+      "Daydata": [
+        {
+          "count": "2",
+          "day": "04",
+          "month": "03",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "05",
+          "month": "03",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "06",
+          "month": "03",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "19",
+          "month": "03",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "3",
+          "day": "27",
+          "month": "03",
+          "year": "2025",
+          "data": []
+        }
+      ]
+    },
+    "array-04-2025": {
+      "monthDetails": {
+        "count": 11,
+        "month": "04/2025",
+        "year": "2025",
+        "totalDayCount": 7
+      },
+      "Daydata": [
+        {
+          "count": "2",
+          "day": "06",
+          "month": "04",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "08",
+          "month": "04",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "16",
+          "month": "04",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "17",
+          "month": "04",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "19",
+          "month": "04",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "27",
+          "month": "04",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "29",
+          "month": "04",
+          "year": "2025",
+          "data": []
+        }
+      ]
+    },
+    "array-05-2025": {
+      "monthDetails": {
+        "count": 8,
+        "month": "05/2025",
+        "year": "2025",
+        "totalDayCount": 5
+      },
+      "Daydata": [
+        {
+          "count": "1",
+          "day": "02",
+          "month": "05",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "03",
+          "month": "05",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "15",
+          "month": "05",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "3",
+          "day": "19",
+          "month": "05",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "31",
+          "month": "05",
+          "year": "2025",
+          "data": []
+        }
+      ]
+    },
+    "array-06-2025": {
+      "monthDetails": {
+        "count": 5,
+        "month": "06/2025",
+        "year": "2025",
+        "totalDayCount": 3
+      },
+      "Daydata": [
+        {
+          "count": "2",
+          "day": "01",
+          "month": "06",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "19",
+          "month": "06",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "21",
+          "month": "06",
+          "year": "2025",
+          "data": []
+        }
+      ]
+    },
+    "array-07-2025": {
+      "monthDetails": {
+        "count": 4,
+        "month": "07/2025",
+        "year": "2025",
+        "totalDayCount": 3
+      },
+      "Daydata": [
+        {
+          "count": "1",
+          "day": "16",
+          "month": "07",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "17",
+          "month": "07",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "18",
+          "month": "07",
+          "year": "2025",
+          "data": []
+        }
+      ]
+    },
+    "array-08-2025": {
+      "monthDetails": {
+        "count": 9,
+        "month": "08/2025",
+        "year": "2025",
+        "totalDayCount": 7
+      },
+      "Daydata": [
+        {
+          "count": "1",
+          "day": "04",
+          "month": "08",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "07",
+          "month": "08",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "10",
+          "month": "08",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "16",
+          "month": "08",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "21",
+          "month": "08",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "3",
+          "day": "29",
+          "month": "08",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "30",
+          "month": "08",
+          "year": "2025",
+          "data": []
+        }
+      ]
+    },
+    "array-09-2025": {
+      "monthDetails": {
+        "count": 4,
+        "month": "09/2025",
+        "year": "2025",
+        "totalDayCount": 4
+      },
+      "Daydata": [
+        {
+          "count": "1",
+          "day": "12",
+          "month": "09",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "13",
+          "month": "09",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "15",
+          "month": "09",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "20",
+          "month": "09",
+          "year": "2025",
+          "data": []
+        }
+      ]
+    },
+    "array-10-2025": {
+      "monthDetails": {
+        "count": 10,
+        "month": "10/2025",
+        "year": "2025",
+        "totalDayCount": 7
+      },
+      "Daydata": [
+        {
+          "count": "2",
+          "day": "01",
+          "month": "10",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "02",
+          "month": "10",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "05",
+          "month": "10",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "11",
+          "month": "10",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "12",
+          "month": "10",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "29",
+          "month": "10",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "30",
+          "month": "10",
+          "year": "2025",
+          "data": []
+        }
+      ]
+    },
+    "array-11-2025": {
+      "monthDetails": {
+        "count": 6,
+        "month": "11/2025",
+        "year": "2025",
+        "totalDayCount": 4
+      },
+      "Daydata": [
+        {
+          "count": "1",
+          "day": "05",
+          "month": "11",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "18",
+          "month": "11",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "21",
+          "month": "11",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "30",
+          "month": "11",
+          "year": "2025",
+          "data": []
+        }
+      ]
+    },
+    "array-12-2025": {
+      "monthDetails": {
+        "count": 11,
+        "month": "12/2025",
+        "year": "2025",
+        "totalDayCount": 7
+      },
+      "Daydata": [
+        {
+          "count": "1",
+          "day": "02",
+          "month": "12",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "16",
+          "month": "12",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "17",
+          "month": "12",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "20",
+          "month": "12",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "3",
+          "day": "27",
+          "month": "12",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "28",
+          "month": "12",
+          "year": "2025",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "31",
+          "month": "12",
+          "year": "2025",
+          "data": []
+        }
+      ]
+    }
+  },
+  "2026": {
+    "yearDetails": {
+      "max": {
+        "count": 42,
+        "date": "2026"
+      },
+      "min": {
+        "count": 42,
+        "date": "2026"
+      }
+    },
+    "array-01-2026": {
+      "monthDetails": {
+        "count": 6,
+        "month": "01/2026",
+        "year": "2026",
+        "totalDayCount": 5
+      },
+      "Daydata": [
+        {
+          "count": "1",
+          "day": "03",
+          "month": "01",
+          "year": "2026",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "07",
+          "month": "01",
+          "year": "2026",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "26",
+          "month": "01",
+          "year": "2026",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "27",
+          "month": "01",
+          "year": "2026",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "29",
+          "month": "01",
+          "year": "2026",
+          "data": []
+        }
+      ]
+    },
+    "array-02-2026": {
+      "monthDetails": {
+        "count": 11,
+        "month": "02/2026",
+        "year": "2026",
+        "totalDayCount": 6
+      },
+      "Daydata": [
+        {
+          "count": "1",
+          "day": "01",
+          "month": "02",
+          "year": "2026",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "02",
+          "month": "02",
+          "year": "2026",
+          "data": []
+        },
+        {
+          "count": "4",
+          "day": "04",
+          "month": "02",
+          "year": "2026",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "11",
+          "month": "02",
+          "year": "2026",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "14",
+          "month": "02",
+          "year": "2026",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "23",
+          "month": "02",
+          "year": "2026",
+          "data": []
+        }
+      ]
+    },
+    "array-03-2026": {
+      "monthDetails": {
+        "count": 17,
+        "month": "03/2026",
+        "year": "2026",
+        "totalDayCount": 10
+      },
+      "Daydata": [
+        {
+          "count": "2",
+          "day": "10",
+          "month": "03",
+          "year": "2026",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "11",
+          "month": "03",
+          "year": "2026",
+          "data": []
+        },
+        {
+          "count": "3",
+          "day": "15",
+          "month": "03",
+          "year": "2026",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "16",
+          "month": "03",
+          "year": "2026",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "20",
+          "month": "03",
+          "year": "2026",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "23",
+          "month": "03",
+          "year": "2026",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "24",
+          "month": "03",
+          "year": "2026",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "27",
+          "month": "03",
+          "year": "2026",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "28",
+          "month": "03",
+          "year": "2026",
+          "data": []
+        },
+        {
+          "count": "1",
+          "day": "31",
+          "month": "03",
+          "year": "2026",
+          "data": []
+        }
+      ]
+    },
+    "array-04-2026": {
+      "monthDetails": {
+        "count": 8,
+        "month": "04/2026",
+        "year": "2026",
+        "totalDayCount": 4
+      },
+      "Daydata": [
+        {
+          "count": "1",
+          "day": "02",
+          "month": "04",
+          "year": "2026",
+          "data": []
+        },
+        {
+          "count": "3",
+          "day": "03",
+          "month": "04",
+          "year": "2026",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "07",
+          "month": "04",
+          "year": "2026",
+          "data": []
+        },
+        {
+          "count": "2",
+          "day": "08",
+          "month": "04",
+          "year": "2026",
+          "data": []
+        }
+      ]
+    }
+  },
+  "AllDetails": {
+    "totalCount": 268,
+    "yearMax": {
+      "year": "2024",
+      "count": 96
+    },
+    "yearMin": {
+      "year": "2023",
+      "count": 38
+    },
+    "monthMax": {
+      "month": "03/2026",
+      "count": 17
+    },
+    "monthMin": {
+      "month": "07/2025",
+      "count": 4
+    }
+  }
+}
