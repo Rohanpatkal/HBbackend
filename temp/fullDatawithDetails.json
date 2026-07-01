@@ -10,7 +10,7 @@
         "date": "2023"
       }
     },
-    "09-2023": {
+    "array-09-2023": {
       "monthDetails": {
         "count": 12,
         "month": "09/2023",
@@ -55,7 +55,7 @@
         }
       ]
     },
-    "10-2023": {
+    "array-10-2023": {
       "monthDetails": {
         "count": 11,
         "month": "10/2023",
@@ -107,7 +107,7 @@
         }
       ]
     },
-    "11-2023": {
+    "array-11-2023": {
       "monthDetails": {
         "count": 7,
         "month": "11/2023",
@@ -166,7 +166,7 @@
         }
       ]
     },
-    "12-2023": {
+    "array-12-2023": {
       "monthDetails": {
         "count": 8,
         "month": "12/2023",
@@ -230,7 +230,7 @@
         "date": "2024"
       }
     },
-    "01-2024": {
+    "array-01-2024": {
       "monthDetails": {
         "count": 8,
         "month": "01/2024",
@@ -282,7 +282,7 @@
         }
       ]
     },
-    "02-2024": {
+    "array-02-2024": {
       "monthDetails": {
         "count": 5,
         "month": "02/2024",
@@ -306,7 +306,7 @@
         }
       ]
     },
-    "03-2024": {
+    "array-03-2024": {
       "monthDetails": {
         "count": 8,
         "month": "03/2024",
@@ -351,7 +351,7 @@
         }
       ]
     },
-    "04-2024": {
+    "array-04-2024": {
       "monthDetails": {
         "count": 15,
         "month": "04/2024",
@@ -424,7 +424,7 @@
         }
       ]
     },
-    "05-2024": {
+    "array-05-2024": {
       "monthDetails": {
         "count": 5,
         "month": "05/2024",
@@ -462,7 +462,7 @@
         }
       ]
     },
-    "06-2024": {
+    "array-06-2024": {
       "monthDetails": {
         "count": 6,
         "month": "06/2024",
@@ -500,7 +500,7 @@
         }
       ]
     },
-    "07-2024": {
+    "array-07-2024": {
       "monthDetails": {
         "count": 6,
         "month": "07/2024",
@@ -538,7 +538,7 @@
         }
       ]
     },
-    "08-2024": {
+    "array-08-2024": {
       "monthDetails": {
         "count": 7,
         "month": "08/2024",
@@ -576,7 +576,7 @@
         }
       ]
     },
-    "09-2024": {
+    "array-09-2024": {
       "monthDetails": {
         "count": 7,
         "month": "09/2024",
@@ -607,7 +607,7 @@
         }
       ]
     },
-    "10-2024": {
+    "array-10-2024": {
       "monthDetails": {
         "count": 10,
         "month": "10/2024",
@@ -645,7 +645,7 @@
         }
       ]
     },
-    "11-2024": {
+    "array-11-2024": {
       "monthDetails": {
         "count": 10,
         "month": "11/2024",
@@ -683,7 +683,7 @@
         }
       ]
     },
-    "12-2024": {
+    "array-12-2024": {
       "monthDetails": {
         "count": 9,
         "month": "12/2024",
@@ -740,7 +740,7 @@
         "date": "2025"
       }
     },
-    "01-2025": {
+    "array-01-2025": {
       "monthDetails": {
         "count": 7,
         "month": "01/2025",
@@ -792,7 +792,7 @@
         }
       ]
     },
-    "02-2025": {
+    "array-02-2025": {
       "monthDetails": {
         "count": 8,
         "month": "02/2025",
@@ -837,7 +837,7 @@
         }
       ]
     },
-    "03-2025": {
+    "array-03-2025": {
       "monthDetails": {
         "count": 9,
         "month": "03/2025",
@@ -882,7 +882,7 @@
         }
       ]
     },
-    "04-2025": {
+    "array-04-2025": {
       "monthDetails": {
         "count": 11,
         "month": "04/2025",
@@ -941,7 +941,7 @@
         }
       ]
     },
-    "05-2025": {
+    "array-05-2025": {
       "monthDetails": {
         "count": 8,
         "month": "05/2025",
@@ -986,7 +986,7 @@
         }
       ]
     },
-    "06-2025": {
+    "array-06-2025": {
       "monthDetails": {
         "count": 5,
         "month": "06/2025",
@@ -1017,7 +1017,7 @@
         }
       ]
     },
-    "07-2025": {
+    "array-07-2025": {
       "monthDetails": {
         "count": 4,
         "month": "07/2025",
@@ -1048,7 +1048,7 @@
         }
       ]
     },
-    "08-2025": {
+    "array-08-2025": {
       "monthDetails": {
         "count": 9,
         "month": "08/2025",
@@ -1107,7 +1107,7 @@
         }
       ]
     },
-    "09-2025": {
+    "array-09-2025": {
       "monthDetails": {
         "count": 4,
         "month": "09/2025",
@@ -1145,7 +1145,7 @@
         }
       ]
     },
-    "10-2025": {
+    "array-10-2025": {
       "monthDetails": {
         "count": 10,
         "month": "10/2025",
@@ -1204,7 +1204,7 @@
         }
       ]
     },
-    "11-2025": {
+    "array-11-2025": {
       "monthDetails": {
         "count": 6,
         "month": "11/2025",
@@ -1242,7 +1242,7 @@
         }
       ]
     },
-    "12-2025": {
+    "array-12-2025": {
       "monthDetails": {
         "count": 11,
         "month": "12/2025",
@@ -1305,15 +1305,15 @@
   "2026": {
     "yearDetails": {
       "max": {
-        "count": 74,
+        "count": 42,
         "date": "2026"
       },
       "min": {
-        "count": 74,
+        "count": 42,
         "date": "2026"
       }
     },
-    "01-2026": {
+    "array-01-2026": {
       "monthDetails": {
         "count": 6,
         "month": "01/2026",
@@ -1358,7 +1358,7 @@
         }
       ]
     },
-    "02-2026": {
+    "array-02-2026": {
       "monthDetails": {
         "count": 11,
         "month": "02/2026",
@@ -1410,7 +1410,7 @@
         }
       ]
     },
-    "03-2026": {
+    "array-03-2026": {
       "monthDetails": {
         "count": 17,
         "month": "03/2026",
@@ -1490,12 +1490,12 @@
         }
       ]
     },
-    "04-2026": {
+    "array-04-2026": {
       "monthDetails": {
-        "count": 16,
+        "count": 8,
         "month": "04/2026",
         "year": "2026",
-        "totalDayCount": 7
+        "totalDayCount": 4
       },
       "Daydata": [
         {
@@ -1525,144 +1525,12 @@
           "month": "04",
           "year": "2026",
           "data": []
-        },
-        {
-          "count": "3",
-          "day": "14",
-          "month": "04",
-          "year": "2026",
-          "data": []
-        },
-        {
-          "count": "2",
-          "day": "21",
-          "month": "04",
-          "year": "2026",
-          "data": []
-        },
-        {
-          "count": "3",
-          "day": "26",
-          "month": "04",
-          "year": "2026",
-          "data": []
-        }
-      ]
-    },
-    "05-2026": {
-      "monthDetails": {
-        "count": 12,
-        "month": "05/2026",
-        "year": "2026",
-        "totalDayCount": 7
-      },
-      "Daydata": [
-        {
-          "count": "2",
-          "day": "01",
-          "month": "05",
-          "year": "2026",
-          "data": []
-        },
-        {
-          "count": "1",
-          "day": "09",
-          "month": "05",
-          "year": "2026",
-          "data": []
-        },
-        {
-          "count": "3",
-          "day": "10",
-          "month": "05",
-          "year": "2026",
-          "data": []
-        },
-        {
-          "count": "1",
-          "day": "11",
-          "month": "05",
-          "year": "2026",
-          "data": []
-        },
-        {
-          "count": "2",
-          "day": "19",
-          "month": "05",
-          "year": "2026",
-          "data": []
-        },
-        {
-          "count": "1",
-          "day": "21",
-          "month": "05",
-          "year": "2026",
-          "data": []
-        },
-        {
-          "count": "2",
-          "day": "29",
-          "month": "05",
-          "year": "2026",
-          "data": []
-        }
-      ]
-    },
-    "06-2026": {
-      "monthDetails": {
-        "count": 12,
-        "month": "06/2026",
-        "year": "2026",
-        "totalDayCount": 6
-      },
-      "Daydata": [
-        {
-          "count": "4",
-          "day": "09",
-          "month": "06",
-          "year": "2026",
-          "data": []
-        },
-        {
-          "count": "2",
-          "day": "17",
-          "month": "06",
-          "year": "2026",
-          "data": []
-        },
-        {
-          "count": "1",
-          "day": "18",
-          "month": "06",
-          "year": "2026",
-          "data": []
-        },
-        {
-          "count": "1",
-          "day": "19",
-          "month": "06",
-          "year": "2026",
-          "data": []
-        },
-        {
-          "count": "1",
-          "day": "20",
-          "month": "06",
-          "year": "2026",
-          "data": []
-        },
-        {
-          "count": "3",
-          "day": "28",
-          "month": "06",
-          "year": "2026",
-          "data": []
         }
       ]
     }
   },
   "AllDetails": {
-    "totalCount": 300,
+    "totalCount": 268,
     "yearMax": {
       "year": "2024",
       "count": 96

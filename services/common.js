@@ -90,7 +90,7 @@ const services = {
                 dayData.year = year;
 
                 //insert filterdAllData
-                let monthandyear = `array-${month}-${year}`;
+                let monthandyear = `${month}-${year}`;
                 if (!filterdAllData.data[year]) {
                     filterdAllData.data[year] = {};
                 }
@@ -128,7 +128,7 @@ const services = {
                 yearTotalCount += monthTotalCount;
                 overallTotal += monthTotalCount;
 
-                const [, month, year] = monthKey.split("-");
+                const [month, year] = monthKey.split("-");
                 const monthLabel = `${month}/${year}`;
 
                 if (monthTotalCount > monthMax) {
@@ -184,7 +184,7 @@ const services = {
 
                 yearTotalCount += monthTotalCount;
 
-                const [, month, year] = monthKey.split("-");
+                const [month, year] = monthKey.split("-");
                 const monthLabel = `${month}/${year}`;
 
                 //all months one by one data in yearlyData
@@ -232,7 +232,7 @@ const services = {
 
                 yearTotalCount += monthTotalCount;
 
-                const [, month, year] = monthKey.split("-");
+                const [month, year] = monthKey.split("-");
                 const monthLabel = `${month}/${year}`;
 
                 if (!fullDatawithDetails[yearKey]) {
@@ -294,7 +294,7 @@ const services = {
                     return sum + (parseInt(dayData.count, 10) || 0);
                 }, 0);
 
-                const [, month, year] = monthKey.split("-");
+                const [month, year] = monthKey.split("-");
                 const monthLabel = `${month}/${year}`;
 
                 monthData[monthLabel] = monthTotalCount;
