@@ -20,7 +20,7 @@ app.use("/api/users", userRoutes);
 
 app.use(
   cors({
-    origin: "http://localhost:3000", // Replace with your Next.js port
+    origin: process.env.CLIENT_ORIGIN || "http://localhost:3000",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
@@ -65,7 +65,7 @@ app.get("/api/fullData", async (req, res) => {
     }
 });
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
