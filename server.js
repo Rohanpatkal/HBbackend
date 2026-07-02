@@ -1,10 +1,22 @@
 import express from "express";
 import fs from "fs";
 import services from "./services/common.js";
-import filterdData from "./filterdAllData.json" with { type: "json" };
 import cors from "cors";
+import dotenv from "dotenv";
+import connectDB from "./config/db.js";
+import userRoutes from "./routes/userRoutes.js";
+import FilteredData from "./dao/filteredData.js";
+import FullData from "./dao/fullData.js";
+
+dotenv.config();
 
 const app = express();
+
+// Connect Database
+connectDB();
+
+
+app.use("/api/users", userRoutes);
 
 app.use(
   cors({
@@ -16,23 +28,41 @@ app.use(
 
 app.use(express.json());
 
-app.get("/data", (req, res) => {
+app.get("/data", async (req, res) => {
     try {
         const data = fs.readFileSync("./data/records.txt", "utf-8");
-        const value = services.dataBreaker(data);
+        const value = await services.dataBreaker(data);
 
         console.log(value);
 
-        res.json(value);
+        res.json({ message: value });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Failed to read data" });
     }
 });
 
-app.get("/getData", (req, res) => {
-    // console.log("Sending filtered data:", filterdData);
-    res.json(filterdData);
+app.get("/getData", async (req, res) => {
+    try {
+        const doc = await FilteredData.findOne().sort({ createdAt: -1 });
+        if (!doc) return res.status(404).json({ error: "No data found. Hit /data first to process and store data." });
+        res.json(doc);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Failed to fetch data" });
+    }
+});
+
+// Fetch the latest FullData from MongoDB
+app.get("/api/fullData", async (req, res) => {
+    try {
+        const doc = await FullData.findOne().sort({ createdAt: -1 });
+        if (!doc) return res.status(404).json({ error: "No data found" });
+        res.json(doc);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Failed to fetch full data" });
+    }
 });
 
 const PORT = 5000;

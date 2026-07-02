@@ -1,71 +1,56 @@
-import { count, log } from "console";
-import fs from "fs";
+import FilteredData from "../dao/filteredData.js";
+import FullData from "../dao/fullData.js";
 
 const services = {
-    dataBreaker: function (rowData) {
-        // let monthlyData = {
-        //     totalDetails: {},
-        //     monthlyData: {}
-        // };
+    dataBreaker: async function (rowData) {
         let filterdAllData = {
             totalDetails: {},
             data: {}
-        }
+        };
         let yearData = {
             yearDetails: {
-                max: {
-                    count: -Infinity,
-                    date: ""
-                },
-                min: {
-                    count: Infinity,
-                    date: ""
-                },
+                max: { count: -Infinity, date: "" },
+                min: { count: Infinity, date: "" },
             },
             yearlyData: {
-                month: {
-                    count: 0,
-                    month: "",
-                    year: ""
-                }
+                month: { count: 0, month: "", year: "" }
             }
-        }
-
-        let fullDatawithDetails = {
-            AllDetails: {
-                count: 0,
-                month: "",
-                year: ""
-            },
-            // 2023: {
-            //     yearDetails: {
-            //         max: {
-            //             count: -Infinity,
-            //             date: ""
-            //         },
-            //         min: {
-            //             count: Infinity,
-            //             date: ""
-            //         },
-            //     },
-            //     09-2023: {
-            //         monthDetails: {
-            //             count: 0,
-            //             month: "",
-            //             year: ""
-            //         },
-            //         Daydata: []
-            //     }
-            // },
         };
+
         const fullData = this.dataOparation(rowData, filterdAllData, yearData);
-        fs.writeFileSync("filterdAllData.json", JSON.stringify(fullData, null, 2));
+        const fullDatawithDetailsData = this.fullDatawithDetails(filterdAllData);
 
-        let fullDatawithDetailsData = this.fullDatawithDetails(filterdAllData);
+        // Save to MongoDB
+        await this.saveToMongo(filterdAllData, fullDatawithDetailsData);
 
-        fs.writeFileSync("fullDatawithDetails.json", JSON.stringify(fullDatawithDetailsData, null, 2));
-        fs.writeFileSync("TotalMonthData.json", JSON.stringify(filterdAllData, null, 2));
-        return "File written successfully";
+        return "Data saved to MongoDB successfully";
+    },
+
+    saveToMongo: async function (filterdAllData, fullDatawithDetailsData) {
+        try {
+            // Upsert FilteredData — replace the single stored document each time
+            await FilteredData.findOneAndUpdate(
+                {}, // match any existing document
+                {
+                    totalDetails: filterdAllData.totalDetails,
+                    data: filterdAllData.data,
+                },
+                { upsert: true, new: true, setDefaultsOnInsert: true }
+            );
+            console.log("FilteredData saved to MongoDB");
+
+            // Split AllDetails out from the year keys for FullData model
+            const { AllDetails, ...yearData } = fullDatawithDetailsData;
+            await FullData.findOneAndUpdate(
+                {},
+                { AllDetails, yearData },
+                { upsert: true, new: true, setDefaultsOnInsert: true }
+            );
+            console.log("FullData saved to MongoDB");
+        } catch (err) {
+            console.error("MongoDB save error:", err.message);
+            throw err;
+        }
     },
     dataOparation: function (rowData, filterdAllData, yearData) {
         const trimedRowData = rowData.replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, '').trim();
@@ -300,7 +285,7 @@ const services = {
                 monthData[monthLabel] = monthTotalCount;
             });
         });
-        fs.writeFileSync("monthData.json", JSON.stringify(monthData, null, 2));
+        return monthData;
     }
 }
 export default services
