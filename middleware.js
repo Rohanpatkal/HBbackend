@@ -190,4 +190,26 @@ export default {
             res.status(500).json({ success: false, message: err.message });
         }
     },
+
+    addSingleLog: async (req, res) => {
+        try {
+            const { userId } = req.params;
+            const { date, count, breakCount, mood, notes } = req.body;
+
+            if (!date || count === undefined) {
+                return res.status(400).json({ success: false, message: "date and count are required" });
+            }
+
+            const result = await mongoService.addSingleLog(userId, { date, count, breakCount, mood, notes });
+
+            res.status(result.action === "created" ? 201 : 200).json({
+                success: true,
+                action: result.action,   // "created" or "updated"
+                message: result.action === "created" ? "Log entry created" : "Log entry updated",
+                data: result.log,
+            });
+        } catch (err) {
+            res.status(400).json({ success: false, message: err.message });
+        }
+    },
 };

@@ -13,6 +13,10 @@ router.get("/user/:userId", middleware.getUserHabitLogs);
 // ── Data upload ───────────────────────────────────────────────────────────────
 router.post("/data/textFormater", upload.single("file"), middleware.textFormater);
 
+// ── Single log entry ──────────────────────────────────────────────────────────
+// Add or update a single day's habit log for a user
+router.post("/log/:userId", middleware.addSingleLog);
+
 // ── Stats & analytics ─────────────────────────────────────────────────────────
 // Global summary: totalCount, best/worst year & month
 router.get("/stats/:userId/summary", middleware.getSummary);

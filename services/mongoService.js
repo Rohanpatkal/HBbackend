@@ -233,4 +233,42 @@ const getMonthDetail = async function (userId, year, month) {
     };
 };
 
-export default { saveToMongo, saveMultipleToMongo, getUserHabitData, getSummary, getYearlyData, getMonthlyData, getMonthDetail };
+// ── Single log entry ──────────────────────────────────────────────────────────
+// Adds or updates a single day's log for a user.
+// If a log already exists for that date, count and breakCount are incremented
+// and the note is appended. All other fields are replaced.
+const addSingleLog = async function (userId, { date, count, breakCount, mood, notes }) {
+    if (!date || count === undefined) {
+        throw new Error("date and count are required");
+    }
+
+    const parsedDate = new Date(date);
+    if (isNaN(parsedDate)) throw new Error("Invalid date format. Use YYYY-MM-DD");
+
+    const existing = await HabitLog.findOne({ userId, date: parsedDate });
+
+    if (!existing) {
+        const log = await HabitLog.create({
+            userId,
+            date: parsedDate,
+            count: Number(count),
+            breakCount: Number(breakCount || 0),
+            mood: mood ?? "",
+            notes: notes?.trim() ? [{ text: notes.trim() }] : [],
+        });
+        return { action: "created", log };
+    }
+
+    existing.count += Number(count);
+    existing.breakCount += Number(breakCount || 0);
+    existing.mood = mood ?? existing.mood;
+
+    if (notes?.trim()) {
+        existing.notes.push({ text: notes.trim() });
+    }
+
+    await existing.save();
+    return { action: "updated", log: existing };
+};
+
+export default { saveToMongo, saveMultipleToMongo, getUserHabitData, getSummary, getYearlyData, getMonthlyData, getMonthDetail, addSingleLog };
