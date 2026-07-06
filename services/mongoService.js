@@ -261,7 +261,11 @@ const addSingleLog = async function (userId, { date, count, breakCount, mood, no
 
     existing.count += Number(count);
     existing.breakCount += Number(breakCount || 0);
-    existing.mood = mood ?? existing.mood;
+    // Only overwrite mood if a new value is explicitly provided
+    if (mood !== undefined && mood !== null && mood.trim() !== "") {
+        existing.mood = mood;
+    }
+    // else keep existing.mood as-is
 
     if (notes?.trim()) {
         existing.notes.push({ text: notes.trim() });
