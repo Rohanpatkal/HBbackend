@@ -204,12 +204,51 @@ export default {
 
             res.status(result.action === "created" ? 201 : 200).json({
                 success: true,
-                action: result.action,   // "created" or "updated"
+                action: result.action,
                 message: result.action === "created" ? "Log entry created" : "Log entry updated",
                 data: result.log,
             });
         } catch (err) {
             res.status(400).json({ success: false, message: err.message });
+        }
+    },
+
+    editLog: async (req, res) => {
+        try {
+            const { userId, logId } = req.params;
+            const { count, breakCount, mood, notes } = req.body;
+
+            const hasUpdate = [count, breakCount, mood, notes].some(v => v !== undefined);
+            if (!hasUpdate) {
+                return res.status(400).json({ success: false, message: "Provide at least one field to update: count, breakCount, mood, notes" });
+            }
+
+            const log = await mongoService.editLog(userId, logId, { count, breakCount, mood, notes });
+
+            res.json({
+                success: true,
+                message: "Log updated successfully",
+                data: log,
+            });
+        } catch (err) {
+            const status = err.message.includes("not found") ? 404 : 500;
+            res.status(status).json({ success: false, message: err.message });
+        }
+    },
+
+    deleteLog: async (req, res) => {
+        try {
+            const { userId, logId } = req.params;
+            const log = await mongoService.deleteLog(userId, logId);
+
+            res.json({
+                success: true,
+                message: "Log deleted successfully",
+                data: log,
+            });
+        } catch (err) {
+            const status = err.message.includes("not found") ? 404 : 500;
+            res.status(status).json({ success: false, message: err.message });
         }
     },
 };

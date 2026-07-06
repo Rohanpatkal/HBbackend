@@ -275,4 +275,38 @@ const addSingleLog = async function (userId, { date, count, breakCount, mood, no
     return { action: "updated", log: existing };
 };
 
-export default { saveToMongo, saveMultipleToMongo, getUserHabitData, getSummary, getYearlyData, getMonthlyData, getMonthDetail, addSingleLog };
+// ── Edit a log ────────────────────────────────────────────────────────────────
+// Replaces only the fields that are sent. Unset fields stay as-is.
+const editLog = async function (userId, logId, updates) {
+    const log = await HabitLog.findOne({ _id: logId, userId });
+
+    if (!log) throw new Error("Log not found or does not belong to this user");
+
+    const { count, breakCount, mood, notes } = updates;
+
+    if (count !== undefined)      log.count      = Number(count);
+    if (breakCount !== undefined) log.breakCount = Number(breakCount);
+    if (mood !== undefined)       log.mood       = mood;
+
+    // notes replacement: send a full notes array to overwrite,
+    // or send a single string to replace all notes with one entry
+    if (notes !== undefined) {
+        if (Array.isArray(notes)) {
+            log.notes = notes.map(n => ({ text: typeof n === "string" ? n : n.text }));
+        } else if (typeof notes === "string") {
+            log.notes = notes.trim() ? [{ text: notes.trim() }] : [];
+        }
+    }
+
+    await log.save();
+    return log;
+};
+
+// ── Delete a log ──────────────────────────────────────────────────────────────
+const deleteLog = async function (userId, logId) {
+    const log = await HabitLog.findOneAndDelete({ _id: logId, userId });
+    if (!log) throw new Error("Log not found or does not belong to this user");
+    return log;
+};
+
+export default { saveToMongo, saveMultipleToMongo, getUserHabitData, getSummary, getYearlyData, getMonthlyData, getMonthDetail, addSingleLog, editLog, deleteLog };

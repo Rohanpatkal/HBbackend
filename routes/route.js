@@ -17,6 +17,12 @@ router.post("/data/textFormater", upload.single("file"), middleware.textFormater
 // Add or update a single day's habit log for a user
 router.post("/log/:userId", middleware.addSingleLog);
 
+// Edit a specific log by its _id (only fields sent will be updated)
+router.put("/log/:userId/:logId", middleware.editLog);
+
+// Delete a specific log by its _id
+router.delete("/log/:userId/:logId", middleware.deleteLog);
+
 // ── Stats & analytics ─────────────────────────────────────────────────────────
 // Global summary: totalCount, best/worst year & month
 router.get("/stats/:userId/summary", middleware.getSummary);
