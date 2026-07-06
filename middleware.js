@@ -1,9 +1,9 @@
 import fs from 'fs';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 import User from './dao/user.js';
 import services from './services/common.js';
 import textFormaterService from './services/textFormaterService.js';
-import multer from "multer";
-import path from "path";
 import mongoService from './services/mongoService.js';
 
 const textFormater = async (req, res) => {
@@ -64,20 +64,71 @@ export const getUserHabitLogs = async (req, res) => {
 
 const createUser = async (req, res) => {
     try {
-        const user = await User.create(req.body);
-        const userId = user._id;
+        const { name, email, password } = req.body;
+
+        if (!name || !email || !password) {
+            return res.status(400).json({ success: false, message: "Name, email and password are required" });
+        }
+
+        const existing = await User.findOne({ email });
+        if (existing) {
+            return res.status(409).json({ success: false, message: "Email already registered" });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const user = await User.create({ name, email, password: hashedPassword });
+
+        const token = jwt.sign(
+            { userId: user._id },
+            process.env.JWT_SECRET,
+            { expiresIn: process.env.JWT_EXPIRES_IN || "7d" }
+        );
 
         res.status(201).json({
             success: true,
-            userId: userId,
             message: "User created successfully",
-            data: user,
+            userId: user._id,
+            token,
+            user: { id: user._id, name: user.name, email: user.email },
         });
     } catch (err) {
-        res.status(500).json({
-            success: false,
-            message: err.message,
+        res.status(500).json({ success: false, message: err.message });
+    }
+};
+
+const login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        if (!email || !password) {
+            return res.status(400).json({ success: false, message: "Email and password are required" });
+        }
+
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(401).json({ success: false, message: "Invalid email or password" });
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(401).json({ success: false, message: "Invalid email or password" });
+        }
+
+        const token = jwt.sign(
+            { userId: user._id },
+            process.env.JWT_SECRET,
+            { expiresIn: process.env.JWT_EXPIRES_IN || "7d" }
+        );
+
+        res.json({
+            success: true,
+            message: "Login successful",
+            userId: user._id,
+            token,
+            user: { id: user._id, name: user.name, email: user.email },
         });
+    } catch (err) {
+        res.status(500).json({ success: false, message: err.message });
     }
 };
 
@@ -95,7 +146,48 @@ const getUser = async (req, res) => {
 
 export default {
     createUser,
+    login,
     getUser,
     textFormater,
-    getUserHabitLogs
+    getUserHabitLogs,
+    getSummary: async (req, res) => {
+        try {
+            const { userId } = req.params;
+            const data = await mongoService.getSummary(userId);
+            if (!data) return res.status(404).json({ success: false, message: "No data found for this user" });
+            res.json({ success: true, data });
+        } catch (err) {
+            res.status(500).json({ success: false, message: err.message });
+        }
+    },
+    getYearlyData: async (req, res) => {
+        try {
+            const { userId } = req.params;
+            const data = await mongoService.getYearlyData(userId);
+            if (!data.length) return res.status(404).json({ success: false, message: "No data found for this user" });
+            res.json({ success: true, data });
+        } catch (err) {
+            res.status(500).json({ success: false, message: err.message });
+        }
+    },
+    getMonthlyData: async (req, res) => {
+        try {
+            const { userId, year } = req.params;
+            const data = await mongoService.getMonthlyData(userId, year);
+            if (!data) return res.status(404).json({ success: false, message: `No data found for ${year}` });
+            res.json({ success: true, ...data });
+        } catch (err) {
+            res.status(500).json({ success: false, message: err.message });
+        }
+    },
+    getMonthDetail: async (req, res) => {
+        try {
+            const { userId, year, month } = req.params;
+            const data = await mongoService.getMonthDetail(userId, year, month);
+            if (!data) return res.status(404).json({ success: false, message: `No data found for ${month}/${year}` });
+            res.json({ success: true, ...data });
+        } catch (err) {
+            res.status(500).json({ success: false, message: err.message });
+        }
+    },
 };
