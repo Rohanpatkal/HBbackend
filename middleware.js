@@ -5,6 +5,7 @@ import User from './dao/user.js';
 import services from './services/common.js';
 import textFormaterService from './services/textFormaterService.js';
 import mongoService from './services/mongoService.js';
+import { recordVisit, getVisitorCounts } from './services/visitorService.js';
 
 const textFormater = async (req, res) => {
     try {
@@ -249,6 +250,27 @@ export default {
         } catch (err) {
             const status = err.message.includes("not found") ? 404 : 500;
             res.status(status).json({ success: false, message: err.message });
+        }
+    },
+
+    // ── Visitor tracking ────────────────────────────────────────────────────────
+
+    pingVisitor: async (req, res) => {
+        try {
+            const { isNew } = await recordVisit(req);
+            const counts    = await getVisitorCounts();
+            res.json({ success: true, isNew, ...counts });
+        } catch (err) {
+            res.status(500).json({ success: false, message: err.message });
+        }
+    },
+
+    getVisitorCount: async (req, res) => {
+        try {
+            const counts = await getVisitorCounts();
+            res.json({ success: true, ...counts });
+        } catch (err) {
+            res.status(500).json({ success: false, message: err.message });
         }
     },
 };

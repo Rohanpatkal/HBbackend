@@ -23,6 +23,13 @@ router.put("/log/:userId/:logId", middleware.editLog);
 // Delete a specific log by its _id
 router.delete("/log/:userId/:logId", middleware.deleteLog);
 
+// ── Visitor tracking ──────────────────────────────────────────────────────────
+// Record a visit (call on app load) — returns { total, today, isNew }
+router.post("/visitors/ping", middleware.pingVisitor);
+
+// Get visitor counts — returns { total, today }
+router.get("/visitors/count", middleware.getVisitorCount);
+
 // ── Stats & analytics ─────────────────────────────────────────────────────────
 // Global summary: totalCount, best/worst year & month
 router.get("/stats/:userId/summary", middleware.getSummary);
