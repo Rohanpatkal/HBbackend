@@ -154,7 +154,7 @@ const getMonthlyData = async function (userId, year) {
 
     const logs = await HabitLog
         .find({ userId, date: { $gte: start, $lte: end } })
-        .select("date count breakCount mood notes")
+        .select("_id date count breakCount mood notes")
         .sort({ date: 1 });
 
     if (!logs.length) return null;
@@ -175,6 +175,7 @@ const getMonthlyData = async function (userId, year) {
         monthMap[monthKey].count += log.count;
         monthMap[monthKey].totalDays += 1;
         monthMap[monthKey].days.push({
+            _id: log._id,
             date: dateLabel,
             count: log.count,
             breakCount: log.breakCount,
