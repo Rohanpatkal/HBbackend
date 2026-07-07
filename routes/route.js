@@ -23,6 +23,19 @@ router.put("/log/:userId/:logId", middleware.editLog);
 // Delete a specific log by its _id
 router.delete("/log/:userId/:logId", middleware.deleteLog);
 
+// ── Comments ──────────────────────────────────────────────────────────────────
+// Get all comments (newest first)
+router.get("/comments", middleware.getComments);
+
+// Post a new comment
+router.post("/comments", middleware.addComment);
+
+// Delete a comment (author only)
+router.delete("/comments/:commentId", middleware.deleteComment);
+
+// Toggle like on a comment
+router.post("/comments/:commentId/like", middleware.toggleLike);
+
 // ── Visitor tracking ──────────────────────────────────────────────────────────
 // Record a visit (call on app load) — returns { total, today, isNew }
 router.post("/visitors/ping", middleware.pingVisitor);

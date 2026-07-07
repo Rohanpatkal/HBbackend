@@ -6,6 +6,7 @@ import services from './services/common.js';
 import textFormaterService from './services/textFormaterService.js';
 import mongoService from './services/mongoService.js';
 import { recordVisit, getVisitorCounts } from './services/visitorService.js';
+import * as commentService from './services/commentService.js';
 
 const textFormater = async (req, res) => {
     try {
@@ -271,6 +272,58 @@ export default {
             res.json({ success: true, ...counts });
         } catch (err) {
             res.status(500).json({ success: false, message: err.message });
+        }
+    },
+
+    // ── Comments ────────────────────────────────────────────────────────────────
+
+    getComments: async (req, res) => {
+        try {
+            const limit  = Math.min(Number(req.query.limit)  || 50, 100);
+            const skip   = Number(req.query.skip) || 0;
+            const result = await commentService.getComments({ limit, skip });
+            res.json({ success: true, ...result });
+        } catch (err) {
+            res.status(500).json({ success: false, message: err.message });
+        }
+    },
+
+    addComment: async (req, res) => {
+        try {
+            const { userId, userName, text } = req.body;
+            if (!userId || !userName || !text) {
+                return res.status(400).json({ success: false, message: "userId, userName and text are required" });
+            }
+            const comment = await commentService.addComment({ userId, userName, text });
+            res.status(201).json({ success: true, comment });
+        } catch (err) {
+            res.status(400).json({ success: false, message: err.message });
+        }
+    },
+
+    deleteComment: async (req, res) => {
+        try {
+            const { commentId } = req.params;
+            const { userId }    = req.body;
+            if (!userId) return res.status(400).json({ success: false, message: "userId is required" });
+            const comment = await commentService.deleteComment(commentId, userId);
+            res.json({ success: true, comment });
+        } catch (err) {
+            const status = err.message.includes("not found") ? 404 : 500;
+            res.status(status).json({ success: false, message: err.message });
+        }
+    },
+
+    toggleLike: async (req, res) => {
+        try {
+            const { commentId } = req.params;
+            const { userId }    = req.body;
+            if (!userId) return res.status(400).json({ success: false, message: "userId is required" });
+            const comment = await commentService.toggleLike(commentId, userId);
+            res.json({ success: true, comment });
+        } catch (err) {
+            const status = err.message.includes("not found") ? 404 : 500;
+            res.status(status).json({ success: false, message: err.message });
         }
     },
 };
