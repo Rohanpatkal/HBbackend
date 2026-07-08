@@ -23,6 +23,9 @@ router.put("/log/:userId/:logId", middleware.editLog);
 // Delete a specific log by its _id
 router.delete("/log/:userId/:logId", middleware.deleteLog);
 
+
+
+
 // ── Comments ──────────────────────────────────────────────────────────────────
 // Get all comments (newest first)
 router.get("/comments", middleware.getComments);
@@ -44,6 +47,8 @@ router.post("/visitors/ping", middleware.pingVisitor);
 router.get("/visitors/count", middleware.getVisitorCount);
 
 // ── Stats & analytics ─────────────────────────────────────────────────────────
+router.get("/stats/:userId/getFilterdData", middleware.getFilterdData)
+
 // Global summary: totalCount, best/worst year & month
 router.get("/stats/:userId/summary", middleware.getSummary);
 

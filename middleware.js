@@ -7,7 +7,7 @@ import textFormaterService from './services/textFormaterService.js';
 import mongoService from './services/mongoService.js';
 import { recordVisit, getVisitorCounts } from './services/visitorService.js';
 import * as commentService from './services/commentService.js';
-
+import filterdDataService from "./services/filterData/filterdDataService.js"
 const textFormater = async (req, res) => {
     try {
         if (!req.file) {
@@ -43,10 +43,27 @@ const textFormater = async (req, res) => {
     }
 };
 
+const getFilterdData = async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const data = await mongoService.getUserHabitData(userId);
+        const filterDetails = filterdDataService.getFilterdDetails(data);
+        res.json({ success: true, filterDetails });
+        console.log(filterDetails);
+        console.log("Fetched data for userId:", userId, "Data:", filterDetails);
+    } catch (error) {
+        console.error(error);
+
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+}
+
 export const getUserHabitLogs = async (req, res) => {
     try {
         const { userId } = req.params;
-
         const data = await mongoService.getUserHabitData(userId);
         console.log("Fetched data for userId:", userId, "Data:", data);
         res.status(200).json({
@@ -146,184 +163,198 @@ const getUser = async (req, res) => {
     }
 };
 
+const getSummary = async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const data = await mongoService.getUserHabitData(userId);
+        const filterdData = await filterdDataService.getSummaryFilterd(data);
+        if (!filterdData) return res.status(404).json({ success: false, message: "No data found for this user" });
+        res.json({ success: true, filterdData });
+    } catch (err) {
+        res.status(500).json({ success: false, message: err.message });
+    }
+}
+const getYearlyData = async (req, res) => {
+    try {
+        const { userId } = req.params;
+        // const data = await mongoService.getYearlyData(userId);
+        const data = await mongoService.getUserHabitData(userId);
+        const filterdData = await filterdDataService.getYearlyData(data);
+        if (!filterdData.length) return res.status(404).json({ success: false, message: "No data found for this user" });
+        res.json({ success: true, filterdData });
+    } catch (err) {
+        res.status(500).json({ success: false, message: err.message });
+    }
+}
+const getMonthlyData = async (req, res) => {
+    try {
+        const { userId, year } = req.params;
+        // const data = await mongoService.getMonthlyData(userId, year);
+        const data = await mongoService.getUserHabitData(userId);
+        const filterdData = await filterdDataService.getMonthlyData(data, year);
+        if (!filterdData) return res.status(404).json({ success: false, message: "No data found for this user" });
+        res.json({ success: true, filterdData });
+    } catch (err) {
+        res.status(500).json({ success: false, message: err.message });
+    }
+}
+const getMonthDetail = async (req, res) => {
+    try {
+        const { userId, year, month } = req.params;
+        // const data = await mongoService.getMonthDetail(userId, year, month);
+        const data = await mongoService.getUserHabitData(userId);
+        const filterdData = await filterdDataService.getMonthDetail(data, year, month);
+        if (!filterdData) return res.status(404).json({ success: false, message: "No data found for this user" });
+        res.json({ success: true, filterdData });
+    } catch (err) {
+        res.status(500).json({ success: false, message: err.message });
+    }
+}
+
+const addSingleLog = async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const { date, count, breakCount, mood, notes } = req.body;
+
+        if (!date || count === undefined) {
+            return res.status(400).json({ success: false, message: "date and count are required" });
+        }
+
+        const result = await mongoService.addSingleLog(userId, { date, count, breakCount, mood, notes });
+
+        res.status(result.action === "created" ? 201 : 200).json({
+            success: true,
+            action: result.action,
+            message: result.action === "created" ? "Log entry created" : "Log entry updated",
+            data: result.log,
+        });
+    } catch (err) {
+        res.status(400).json({ success: false, message: err.message });
+    }
+}
+const editLog = async (req, res) => {
+    try {
+        const { userId, logId } = req.params;
+        const { count, breakCount, mood, notes } = req.body;
+
+        const hasUpdate = [count, breakCount, mood, notes].some(v => v !== undefined);
+        if (!hasUpdate) {
+            return res.status(400).json({ success: false, message: "Provide at least one field to update: count, breakCount, mood, notes" });
+        }
+
+        const log = await mongoService.editLog(userId, logId, { count, breakCount, mood, notes });
+
+        res.json({
+            success: true,
+            message: "Log updated successfully",
+            data: log,
+        });
+    } catch (err) {
+        const status = err.message.includes("not found") ? 404 : 500;
+        res.status(status).json({ success: false, message: err.message });
+    }
+}
+const deleteLog = async (req, res) => {
+    try {
+        const { userId, logId } = req.params;
+        const log = await mongoService.deleteLog(userId, logId);
+
+        res.json({
+            success: true,
+            message: "Log deleted successfully",
+            data: log,
+        });
+    } catch (err) {
+        const status = err.message.includes("not found") ? 404 : 500;
+        res.status(status).json({ success: false, message: err.message });
+    }
+}
+
+// ── Visitor tracking ────────────────────────────────────────────────────────
+
+const pingVisitor = async (req, res) => {
+    try {
+        const { isNew } = await recordVisit(req);
+        const counts = await getVisitorCounts();
+        res.json({ success: true, isNew, ...counts });
+    } catch (err) {
+        res.status(500).json({ success: false, message: err.message });
+    }
+}
+const getVisitorCount = async (req, res) => {
+    try {
+        const counts = await getVisitorCounts();
+        res.json({ success: true, ...counts });
+    } catch (err) {
+        res.status(500).json({ success: false, message: err.message });
+    }
+}
+// ── Comments ────────────────────────────────────────────────────────────────
+
+const getComments = async (req, res) => {
+    try {
+        const limit = Math.min(Number(req.query.limit) || 50, 100);
+        const skip = Number(req.query.skip) || 0;
+        const result = await commentService.getComments({ limit, skip });
+        res.json({ success: true, ...result });
+    } catch (err) {
+        res.status(500).json({ success: false, message: err.message });
+    }
+}
+const addComment = async (req, res) => {
+    try {
+        const { userId, userName, text } = req.body;
+        if (!userId || !userName || !text) {
+            return res.status(400).json({ success: false, message: "userId, userName and text are required" });
+        }
+        const comment = await commentService.addComment({ userId, userName, text });
+        res.status(201).json({ success: true, comment });
+    } catch (err) {
+        res.status(400).json({ success: false, message: err.message });
+    }
+}
+const deleteComment = async (req, res) => {
+    try {
+        const { commentId } = req.params;
+        const { userId } = req.body;
+        if (!userId) return res.status(400).json({ success: false, message: "userId is required" });
+        const comment = await commentService.deleteComment(commentId, userId);
+        res.json({ success: true, comment });
+    } catch (err) {
+        const status = err.message.includes("not found") ? 404 : 500;
+        res.status(status).json({ success: false, message: err.message });
+    }
+}
+const toggleLike = async (req, res) => {
+    try {
+        const { commentId } = req.params;
+        const { userId } = req.body;
+        if (!userId) return res.status(400).json({ success: false, message: "userId is required" });
+        const comment = await commentService.toggleLike(commentId, userId);
+        res.json({ success: true, comment });
+    } catch (err) {
+        const status = err.message.includes("not found") ? 404 : 500;
+        res.status(status).json({ success: false, message: err.message });
+    }
+}
 export default {
     createUser,
     login,
     getUser,
     textFormater,
     getUserHabitLogs,
-    getSummary: async (req, res) => {
-        try {
-            const { userId } = req.params;
-            const data = await mongoService.getSummary(userId);
-            if (!data) return res.status(404).json({ success: false, message: "No data found for this user" });
-            res.json({ success: true, data });
-        } catch (err) {
-            res.status(500).json({ success: false, message: err.message });
-        }
-    },
-    getYearlyData: async (req, res) => {
-        try {
-            const { userId } = req.params;
-            const data = await mongoService.getYearlyData(userId);
-            if (!data.length) return res.status(404).json({ success: false, message: "No data found for this user" });
-            res.json({ success: true, data });
-        } catch (err) {
-            res.status(500).json({ success: false, message: err.message });
-        }
-    },
-    getMonthlyData: async (req, res) => {
-        try {
-            const { userId, year } = req.params;
-            const data = await mongoService.getMonthlyData(userId, year);
-            if (!data) return res.status(404).json({ success: false, message: `No data found for ${year}` });
-            res.json({ success: true, ...data });
-        } catch (err) {
-            res.status(500).json({ success: false, message: err.message });
-        }
-    },
-    getMonthDetail: async (req, res) => {
-        try {
-            const { userId, year, month } = req.params;
-            const data = await mongoService.getMonthDetail(userId, year, month);
-            if (!data) return res.status(404).json({ success: false, message: `No data found for ${month}/${year}` });
-            res.json({ success: true, ...data });
-        } catch (err) {
-            res.status(500).json({ success: false, message: err.message });
-        }
-    },
-
-    addSingleLog: async (req, res) => {
-        try {
-            const { userId } = req.params;
-            const { date, count, breakCount, mood, notes } = req.body;
-
-            if (!date || count === undefined) {
-                return res.status(400).json({ success: false, message: "date and count are required" });
-            }
-
-            const result = await mongoService.addSingleLog(userId, { date, count, breakCount, mood, notes });
-
-            res.status(result.action === "created" ? 201 : 200).json({
-                success: true,
-                action: result.action,
-                message: result.action === "created" ? "Log entry created" : "Log entry updated",
-                data: result.log,
-            });
-        } catch (err) {
-            res.status(400).json({ success: false, message: err.message });
-        }
-    },
-
-    editLog: async (req, res) => {
-        try {
-            const { userId, logId } = req.params;
-            const { count, breakCount, mood, notes } = req.body;
-
-            const hasUpdate = [count, breakCount, mood, notes].some(v => v !== undefined);
-            if (!hasUpdate) {
-                return res.status(400).json({ success: false, message: "Provide at least one field to update: count, breakCount, mood, notes" });
-            }
-
-            const log = await mongoService.editLog(userId, logId, { count, breakCount, mood, notes });
-
-            res.json({
-                success: true,
-                message: "Log updated successfully",
-                data: log,
-            });
-        } catch (err) {
-            const status = err.message.includes("not found") ? 404 : 500;
-            res.status(status).json({ success: false, message: err.message });
-        }
-    },
-
-    deleteLog: async (req, res) => {
-        try {
-            const { userId, logId } = req.params;
-            const log = await mongoService.deleteLog(userId, logId);
-
-            res.json({
-                success: true,
-                message: "Log deleted successfully",
-                data: log,
-            });
-        } catch (err) {
-            const status = err.message.includes("not found") ? 404 : 500;
-            res.status(status).json({ success: false, message: err.message });
-        }
-    },
-
-    // ── Visitor tracking ────────────────────────────────────────────────────────
-
-    pingVisitor: async (req, res) => {
-        try {
-            const { isNew } = await recordVisit(req);
-            const counts    = await getVisitorCounts();
-            res.json({ success: true, isNew, ...counts });
-        } catch (err) {
-            res.status(500).json({ success: false, message: err.message });
-        }
-    },
-
-    getVisitorCount: async (req, res) => {
-        try {
-            const counts = await getVisitorCounts();
-            res.json({ success: true, ...counts });
-        } catch (err) {
-            res.status(500).json({ success: false, message: err.message });
-        }
-    },
-
-    // ── Comments ────────────────────────────────────────────────────────────────
-
-    getComments: async (req, res) => {
-        try {
-            const limit  = Math.min(Number(req.query.limit)  || 50, 100);
-            const skip   = Number(req.query.skip) || 0;
-            const result = await commentService.getComments({ limit, skip });
-            res.json({ success: true, ...result });
-        } catch (err) {
-            res.status(500).json({ success: false, message: err.message });
-        }
-    },
-
-    addComment: async (req, res) => {
-        try {
-            const { userId, userName, text } = req.body;
-            if (!userId || !userName || !text) {
-                return res.status(400).json({ success: false, message: "userId, userName and text are required" });
-            }
-            const comment = await commentService.addComment({ userId, userName, text });
-            res.status(201).json({ success: true, comment });
-        } catch (err) {
-            res.status(400).json({ success: false, message: err.message });
-        }
-    },
-
-    deleteComment: async (req, res) => {
-        try {
-            const { commentId } = req.params;
-            const { userId }    = req.body;
-            if (!userId) return res.status(400).json({ success: false, message: "userId is required" });
-            const comment = await commentService.deleteComment(commentId, userId);
-            res.json({ success: true, comment });
-        } catch (err) {
-            const status = err.message.includes("not found") ? 404 : 500;
-            res.status(status).json({ success: false, message: err.message });
-        }
-    },
-
-    toggleLike: async (req, res) => {
-        try {
-            const { commentId } = req.params;
-            const { userId }    = req.body;
-            if (!userId) return res.status(400).json({ success: false, message: "userId is required" });
-            const comment = await commentService.toggleLike(commentId, userId);
-            res.json({ success: true, comment });
-        } catch (err) {
-            const status = err.message.includes("not found") ? 404 : 500;
-            res.status(status).json({ success: false, message: err.message });
-        }
-    },
+    getSummary,
+    getYearlyData,
+    getMonthlyData,
+    getMonthDetail,
+    addSingleLog,
+    editLog,
+    deleteLog,
+    pingVisitor,
+    getVisitorCount,
+    getComments,
+    addComment,
+    deleteComment,
+    toggleLike,
+    getFilterdData
 };
