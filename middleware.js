@@ -193,6 +193,16 @@ export default {
         }
     },
 
+    getGapStats: async (req, res) => {
+        try {
+            const { userId } = req.params;
+            const data = await mongoService.getGapStats(userId);
+            res.json({ success: true, data });
+        } catch (err) {
+            res.status(500).json({ success: false, message: err.message });
+        }
+    },
+
     addSingleLog: async (req, res) => {
         try {
             const { userId } = req.params;

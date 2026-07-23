@@ -56,4 +56,7 @@ router.get("/stats/:userId/monthly/:year", middleware.getMonthlyData);
 // Single month detail: { month, count, totalDays, max, min, days: [...] }
 router.get("/stats/:userId/monthly/:year/:month", middleware.getMonthDetail);
 
+// Gap stats: top-5 gap frequencies per year + global
+router.get("/stats/:userId/gaps", middleware.getGapStats);
+
 export default router;
