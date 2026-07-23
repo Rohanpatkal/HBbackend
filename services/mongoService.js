@@ -311,8 +311,14 @@ const deleteLog = async function (userId, logId) {
 };
 
 // ── Gap Stats ─────────────────────────────────────────────────────────────────
-// Returns smoke-free gap frequency distribution — per year and globally.
-// A "gap" = consecutive run of days where count === 0 (smoke-free).
+// Returns gap frequency distribution between consecutive SMOKING days.
+//
+// A "gap" = calendar days between two consecutive smoking events.
+// Example: smoke on Jan 5, next smoke Jan 8 → gap = 2 days (Jan 6 & Jan 7).
+// Formula: gap = date_diff_in_days - 1.
+//
+// This approach is correct regardless of whether smoke-free days are logged.
+// Only requires smoking-day entries (count > 0) which are always logged.
 //
 // Response shape:
 // {
@@ -320,56 +326,58 @@ const deleteLog = async function (userId, logId) {
 //   yearlyGaps: { "2024": { average: 9.1, top5: [...] }, ... }
 // }
 //
-// Sorting: top5 is sorted by occurrence COUNT descending (most frequent gap first).
+// top5 sorted by occurrence COUNT descending (most frequent gap first).
 // Tiebreaker: higher gap length ranks first.
 const getGapStats = async function (userId) {
-    // Fetch all logs sorted by date ascending
-    const logs = await HabitLog.find({ userId }).select("date count").sort({ date: 1 });
+    // Fetch only smoking days (count > 0) sorted by date ascending
+    const smokingLogs = await HabitLog
+        .find({ userId, count: { $gt: 0 } })
+        .select("date")
+        .sort({ date: 1 });
 
-    if (!logs.length) return { globalGaps: { average: 0, top5: [] }, yearlyGaps: {} };
-
-    // ── Build per-year arrays of smoke-free flags ──────────────────────────────
-    // Each log entry: smokeFree = (count === 0)
-    const yearBuckets = {}; // { "2024": [true, false, true, ...] }
-
-    for (const log of logs) {
-        const d = new Date(log.date);
-        const year = String(d.getFullYear());
-        if (!yearBuckets[year]) yearBuckets[year] = [];
-        yearBuckets[year].push(log.count === 0);
+    if (smokingLogs.length < 2) {
+        return { globalGaps: { average: 0, top5: [] }, yearlyGaps: {} };
     }
 
-    // ── Helper: compute gap runs from boolean array ────────────────────────────
-    // Returns array of gap lengths, e.g. [3, 10, 2, 7]
-    function computeRuns(flags) {
-        const runs = [];
-        let current = 0;
-        for (const free of flags) {
-            if (free) {
-                current++;
-            } else if (current > 0) {
-                runs.push(current);
-                current = 0;
-            }
-        }
-        if (current > 0) runs.push(current);
-        return runs;
+    // ── Compute gap lengths between consecutive smoking days ───────────────────
+    const allGaps = [];
+    const yearGaps = {}; // { "2024": [gapLen, ...] }
+
+    for (let i = 1; i < smokingLogs.length; i++) {
+        const prevDate = new Date(smokingLogs[i - 1].date);
+        const currDate = new Date(smokingLogs[i].date);
+
+        // Days between the two dates (gap = days in between, not counting endpoints)
+        const dayDiff = Math.round(
+            (currDate.getTime() - prevDate.getTime()) / (1000 * 60 * 60 * 24)
+        ) - 1;
+
+        if (dayDiff <= 0) continue; // consecutive/same days — no gap
+
+        allGaps.push(dayDiff);
+
+        // Attribute gap to the year of the LATER smoking day
+        const year = String(currDate.getFullYear());
+        if (!yearGaps[year]) yearGaps[year] = [];
+        yearGaps[year].push(dayDiff);
     }
 
-    // ── Helper: build { average, top5 } from a runs array ─────────────────────
-    function buildGapResult(runs) {
-        if (!runs.length) return { average: 0, top5: [] };
+    // ── Helper: build { average, top5 } from gap-length array ─────────────────
+    function buildGapResult(gaps) {
+        if (!gaps.length) return { average: 0, top5: [] };
 
         // Frequency map: { gapLength -> occurrenceCount }
         const freq = {};
-        for (const r of runs) {
-            freq[r] = (freq[r] || 0) + 1;
+        for (const g of gaps) {
+            freq[g] = (freq[g] || 0) + 1;
         }
 
-        // Average of all gap lengths (not weighted by frequency)
-        const average = Math.round((runs.reduce((a, b) => a + b, 0) / runs.length) * 10) / 10;
+        // Average gap length (mean of all gap instances)
+        const average = Math.round(
+            (gaps.reduce((a, b) => a + b, 0) / gaps.length) * 10
+        ) / 10;
 
-        // Sort by occurrence count DESC, tiebreak by gap length DESC
+        // Sort by occurrence count DESC, tiebreak by gap length DESC → top 5
         const sorted = Object.entries(freq)
             .map(([gap, count]) => ({ gap: Number(gap), count }))
             .sort((a, b) => b.count - a.count || b.gap - a.gap);
@@ -377,18 +385,12 @@ const getGapStats = async function (userId) {
         return { average, top5: sorted.slice(0, 5) };
     }
 
-    // ── Per-year computation ───────────────────────────────────────────────────
+    // ── Per-year and global results ────────────────────────────────────────────
     const yearlyGaps = {};
-    const allRuns = [];
-
-    for (const [year, flags] of Object.entries(yearBuckets)) {
-        const runs = computeRuns(flags);
-        allRuns.push(...runs);
-        yearlyGaps[year] = buildGapResult(runs);
+    for (const [year, gaps] of Object.entries(yearGaps)) {
+        yearlyGaps[year] = buildGapResult(gaps);
     }
-
-    // ── Global computation ─────────────────────────────────────────────────────
-    const globalGaps = buildGapResult(allRuns);
+    const globalGaps = buildGapResult(allGaps);
 
     return { globalGaps, yearlyGaps };
 };
